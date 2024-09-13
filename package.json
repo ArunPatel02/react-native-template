@@ -1,0 +1,8 @@
+{
+  "name": "react-native-pps-template",
+  "version": "0.0.1",
+  "description": "React Native Template",
+  "repository": "git@gitlab.com:PardyPandaStudios/ppsreactnativebaseapp.git",
+  "author": "Arun Patel <arun.patel@pardypanda.com>",
+  "license": "MIT"
+}
