@@ -1,15 +1,14 @@
 import React, { useEffect } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { SplashScreens, SplashStackParamList } from '../../../navigation/SplashStack';
+import { CompositeSplashScreenProps } from '../../../navigation/type';
 
-type SplashScreenPropsType = NativeStackScreenProps<SplashStackParamList , SplashScreens.SPLASH>
+type SplashScreenPropsType = CompositeSplashScreenProps<'SplashStack','Splash'>
 
 const SplashScreen: React.FC<SplashScreenPropsType> = ({navigation}) => {
     useEffect(() => {
         // Hide the splash screen after 2 seconds
         setTimeout(() => {
-            navigation.navigate(SplashScreens.SPLASH)
+            navigation.navigate('SplashStack' , {screen : 'Splash'});
         }, 2000);
     }, [navigation]);
 

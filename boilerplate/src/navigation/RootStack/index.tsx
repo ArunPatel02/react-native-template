@@ -5,9 +5,9 @@ import SplashStack, { SplashStackParamList } from '../SplashStack';
 
 //RootStacks object define all the stacks name inside RootS stack
 //enum for unique names of stacks
-export enum RootStacks {
-    SPLASH = 'Splash',
-    APP = 'App',
+export const RootStacks = {
+    SPLASH : 'SplashStack' as const,
+    APP : 'App' as const,
 }
 
 export type RootStackParamList = {
