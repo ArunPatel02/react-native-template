@@ -7,4 +7,4 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 export type RootStackPropsType <T extends keyof RootStackParamList> = NativeStackScreenProps<RootStackParamList , T>
 
 export type SplashScreenProps<T extends keyof SplashStackParamList> = StackScreenProps<SplashStackParamList , T>
-export type CompositeSplashScreenProps <R extends keyof RootStackParamList , T extends keyof SplashStackParamList> = CompositeScreenProps<RootStackPropsType<R>, SplashScreenProps<T>>
+export type CompositeSplashScreenProps < T extends keyof SplashStackParamList> = CompositeScreenProps<RootStackPropsType<'SplashStack'>, SplashScreenProps<T>>

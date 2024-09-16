@@ -3,17 +3,16 @@ import {
   StackNavigationOptions,
 } from '@react-navigation/stack';
 import React from 'react';
-import SplashScreen from '../../screens/(Splash)/SplashScreen';
+import SplashScreen from '../../screens/SplashScreen';
 
 //SplashScreens object define all the screens name inside splash stack
-//enum for unique names of screens
 export const SplashScreens = {
   SPLASH: 'Splash' as const,
-}
+};
 
 //SplashStackParamList define the stack navigator screen params (undefine for no params to be passed)
 export type SplashStackParamList = {
-  [SplashScreens.SPLASH]: {userId : string} | undefined; // Use the string literal directly
+  [SplashScreens.SPLASH]: undefined;
 };
 
 //Stack define the stack for stack navigation

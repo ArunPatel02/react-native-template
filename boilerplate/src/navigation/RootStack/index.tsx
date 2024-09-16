@@ -4,11 +4,10 @@ import React from 'react';
 import SplashStack, { SplashStackParamList } from '../SplashStack';
 
 //RootStacks object define all the stacks name inside RootS stack
-//enum for unique names of stacks
 export const RootStacks = {
     SPLASH : 'SplashStack' as const,
     APP : 'App' as const,
-}
+};
 
 export type RootStackParamList = {
     [RootStacks.SPLASH] : NavigatorScreenParams<SplashStackParamList>,
@@ -17,7 +16,7 @@ export type RootStackParamList = {
 
   const Stack = createStackNavigator<RootStackParamList>();
 
-  const RootStack : React.FC = ()=>{
+  const Navigation : React.FC = ()=>{
     return (
       <NavigationContainer>
         <Stack.Navigator>
@@ -28,4 +27,4 @@ export type RootStackParamList = {
     );
   };
 
-  export default RootStack;
+  export default Navigation;
