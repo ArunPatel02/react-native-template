@@ -4,13 +4,13 @@ import { CompositeSplashScreenProps } from '../../navigation/type';
 import { moderateScale, scale, verticalScale } from 'react-native-size-matters';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-type SplashScreenPropsType = CompositeSplashScreenProps<'Splash'>
+interface SplashScreenPropsType extends CompositeSplashScreenProps<'Splash'>{}
 
 const SplashScreen: React.FC<SplashScreenPropsType> = ({navigation}) => {
     useEffect(() => {
         // Hide the splash screen after 2 seconds
         setTimeout(() => {
-            navigation.navigate('SplashStack' , {screen : 'Splash'});
+            navigation.replace('Welcome');
         }, 2000);
     }, [navigation]);
 
