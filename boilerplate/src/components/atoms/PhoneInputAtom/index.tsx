@@ -1,16 +1,15 @@
 import React from 'react';
 import { View } from 'react-native';
-import PhoneInput from 'react-native-phone-number-input';
-import CInputError from '../../atoms/CInputError';
+import PhoneInput, { PhoneInputProps } from 'react-native-phone-number-input';
+import CInputError from '../CInputError';
 
-interface PhoneInputContainerProps {
+interface PhoneInputAtomProps extends PhoneInputProps {
     value: string;
     onChangeText: (text: string) => void;
-    setFormattedValue : (text : string) => void;
     errorMessage?: string;
 }
 
-const PhoneInputContainer: React.FC<PhoneInputContainerProps> = ({ value, onChangeText, setFormattedValue, errorMessage}) => {
+const PhoneInputAtom: React.FC<PhoneInputAtomProps> = ({ value, onChangeText, errorMessage , ...rest}) => {
     return (
         <View>
             <PhoneInput
@@ -21,16 +20,14 @@ const PhoneInputContainer: React.FC<PhoneInputContainerProps> = ({ value, onChan
                 onChangeText={(text) => {
                     onChangeText(text);
                 }}
-                onChangeFormattedText={(text) => {
-                    setFormattedValue(text);
-                }}
                 textInputStyle={{padding : 0}}
                 withShadow
                 autoFocus
+                {...rest}
             />
             {errorMessage && <CInputError errorMessage={errorMessage} />}
         </View>
     );
 };
 
-export default PhoneInputContainer;
+export default PhoneInputAtom;

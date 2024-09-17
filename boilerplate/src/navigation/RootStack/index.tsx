@@ -3,21 +3,23 @@ import { createStackNavigator, StackNavigationOptions } from '@react-navigation/
 import React from 'react';
 import SplashStack, { SplashStackParamList } from '../SplashStack';
 import OnboardingScreen from '../../screens/OnBoarding';
-import SignInScreen from '../../screens/Auth/SignIn';
+import AuthStack, { AuthStackParamList } from '../AuthStack';
+import AppStack, { AppStackParamList } from '../AppStack';
 
 //RootStacks object define all the stacks name inside RootS stack
 export const RootStacks = {
-    SPLASH : 'SplashStack' as const,
+    SPLASH : 'SplashStack' as const, // as const make this as a unique key pair which make it non changeable
     WELCOME : 'Welcome' as const,
     AUTH : 'Auth' as const,
     APP : 'App' as const,
 };
 
+// define the stack navigator screen params (undefine for no params to be passed)
 export type RootStackParamList = {
-    [RootStacks.SPLASH] : NavigatorScreenParams<SplashStackParamList>,
-    [RootStacks.WELCOME] : undefined,
-    [RootStacks.AUTH] : undefined,
-    [RootStacks.APP] : NavigatorScreenParams<SplashStackParamList>,
+    [RootStacks.SPLASH] : NavigatorScreenParams<SplashStackParamList>, //this pass the navigation stack types for splash stack
+    [RootStacks.WELCOME] : undefined, //udefine represents this is not sub stack but screen which does not have params
+    [RootStacks.AUTH] : NavigatorScreenParams<AuthStackParamList>, //this pass the navigation stack types for Auth Stack
+    [RootStacks.APP] : NavigatorScreenParams<AppStackParamList> | undefined, //this pass the navigation stack types for App Stack
   };
 
   const Stack = createStackNavigator<RootStackParamList>();
@@ -33,8 +35,8 @@ const screenOptions: StackNavigationOptions = {
         <Stack.Navigator screenOptions={screenOptions}>
           <Stack.Screen name={RootStacks.SPLASH} component={SplashStack} />
           <Stack.Screen name={RootStacks.WELCOME} component={OnboardingScreen} />
-          <Stack.Screen name={RootStacks.AUTH} component={SignInScreen} />
-          <Stack.Screen name={RootStacks.APP} component={SplashStack} />
+          <Stack.Screen name={RootStacks.AUTH} component={AuthStack} />
+          <Stack.Screen name={RootStacks.APP} component={AppStack} />
         </Stack.Navigator>
       </NavigationContainer>
     );

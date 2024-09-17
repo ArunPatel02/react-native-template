@@ -26,11 +26,11 @@ const styles = StyleSheet.create({
         backgroundColor: '#007BFF',
         padding: moderateScale(10),
         borderRadius: moderateScale(5),
-        alignItems: 'center',
         marginBottom: moderateScale(10),
     },
     text: {
         color: 'white',
+        textAlign : 'center',
         fontSize: moderateScale(16),
     },
     disabled: {

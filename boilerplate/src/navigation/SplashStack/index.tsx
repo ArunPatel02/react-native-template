@@ -7,7 +7,7 @@ import SplashScreen from '../../screens/SplashScreen';
 
 //SplashScreens object define all the screens name inside splash stack
 export const SplashScreens = {
-  SPLASH: 'Splash' as const,
+  SPLASH: 'Splash' as const, // as const make this as a unique key pair which make it non changeable
 };
 
 //SplashStackParamList define the stack navigator screen params (undefine for no params to be passed)

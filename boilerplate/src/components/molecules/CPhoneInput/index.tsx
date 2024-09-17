@@ -1,26 +1,26 @@
 import React from 'react';
 import { View, StyleSheet, TouchableWithoutFeedback, Keyboard } from 'react-native';
-import PhoneInputContainer from '../../molecules/PhoneInputConatainer';
 import CInputLabel from '../../atoms/CInputLabel';
 import { moderateScale } from 'react-native-size-matters';
+import PhoneInputAtom from '../../atoms/PhoneInputAtom';
+import { PhoneInputProps } from 'react-native-phone-number-input';
 
-interface CPhoneInputProps {
+interface CPhoneInputProps extends PhoneInputProps {
     value: string;
     onChangeText: (text: string) => void;
-    setFormattedValue: (text: string) => void;
     errorMessage : string
 }
 
-const CPhoneInput: React.FC<CPhoneInputProps> = ({ value, onChangeText, setFormattedValue , errorMessage }) => {
+const CPhoneInput: React.FC<CPhoneInputProps> = ({ value, onChangeText , errorMessage , ...rest }) => {
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
             <View style={styles.container}>
                 <CInputLabel label="Enter Phone Number" />
-                <PhoneInputContainer 
+                <PhoneInputAtom 
                     value={value} 
-                    onChangeText={onChangeText} 
-                    setFormattedValue={setFormattedValue} 
+                    onChangeText={onChangeText}
                     errorMessage={errorMessage}
+                    {...rest}
                 />
             </View>
         </TouchableWithoutFeedback>
@@ -29,8 +29,6 @@ const CPhoneInput: React.FC<CPhoneInputProps> = ({ value, onChangeText, setForma
 
 const styles = StyleSheet.create({
     container: {
-        flexGrow : 1,
-        flex : 1,
         justifyContent : 'center',
     },
     label: {
