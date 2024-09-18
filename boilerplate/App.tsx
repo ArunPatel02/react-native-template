@@ -12,7 +12,6 @@ import { StatusBar } from 'react-native';
 
 
 const App: React.FC = () => {
-
   return (
     <SafeAreaProvider>
       <StatusBar translucent backgroundColor={'transparent'}/>

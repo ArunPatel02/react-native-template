@@ -1,9 +1,37 @@
 PODS:
+  - AppAuth (1.7.5):
+    - AppAuth/Core (= 1.7.5)
+    - AppAuth/ExternalUserAgent (= 1.7.5)
+  - AppAuth/Core (1.7.5)
+  - AppAuth/ExternalUserAgent (1.7.5):
+    - AppAuth/Core
   - boost (1.84.0)
   - DoubleConversion (1.1.6)
+  - FBAEMKit (17.0.3):
+    - FBSDKCoreKit_Basics (= 17.0.3)
   - FBLazyVector (0.75.3)
+  - FBSDKCoreKit (17.0.3):
+    - FBAEMKit (= 17.0.3)
+    - FBSDKCoreKit_Basics (= 17.0.3)
+  - FBSDKCoreKit_Basics (17.0.3)
+  - FBSDKGamingServicesKit (17.0.3):
+    - FBSDKCoreKit (= 17.0.3)
+    - FBSDKCoreKit_Basics (= 17.0.3)
+    - FBSDKShareKit (= 17.0.3)
+  - FBSDKLoginKit (17.0.3):
+    - FBSDKCoreKit (= 17.0.3)
+  - FBSDKShareKit (17.0.3):
+    - FBSDKCoreKit (= 17.0.3)
   - fmt (9.1.0)
   - glog (0.3.5)
+  - GoogleSignIn (7.1.0):
+    - AppAuth (< 2.0, >= 1.7.3)
+    - GTMAppAuth (< 5.0, >= 4.1.1)
+    - GTMSessionFetcher/Core (~> 3.3)
+  - GTMAppAuth (4.1.1):
+    - AppAuth/Core (~> 1.7)
+    - GTMSessionFetcher/Core (< 4.0, >= 3.3)
+  - GTMSessionFetcher/Core (3.5.0)
   - hermes-engine (0.75.2):
     - hermes-engine/Pre-built (= 0.75.2)
   - hermes-engine/Pre-built (0.75.2)
@@ -1237,6 +1265,23 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
+  - react-native-fbsdk-next (13.0.0):
+    - React-Core
+    - react-native-fbsdk-next/Core (= 13.0.0)
+    - react-native-fbsdk-next/Login (= 13.0.0)
+    - react-native-fbsdk-next/Share (= 13.0.0)
+  - react-native-fbsdk-next/Core (13.0.0):
+    - FBSDKCoreKit (~> 17.0.0)
+    - React-Core
+  - react-native-fbsdk-next/Login (13.0.0):
+    - FBSDKLoginKit (~> 17.0.0)
+    - React-Core
+  - react-native-fbsdk-next/Share (13.0.0):
+    - FBSDKGamingServicesKit (~> 17.0.0)
+    - FBSDKShareKit (~> 17.0.0)
+    - React-Core
+  - react-native-otp-verify (1.1.8):
+    - React-Core
   - react-native-safe-area-context (4.11.0):
     - React-Core
   - React-nativeconfig (0.75.3)
@@ -1520,6 +1565,9 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
+  - RNGoogleSignin (13.0.1):
+    - GoogleSignIn (~> 7.1)
+    - React-Core
   - RNScreens (3.34.0):
     - DoubleConversion
     - glog
@@ -1542,6 +1590,8 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
+  - RNSVG (15.7.1):
+    - React-Core
   - SocketRocket (0.7.0)
   - Yoga (0.0.0)
 
@@ -1583,6 +1633,8 @@ DEPENDENCIES:
   - React-logger (from `../node_modules/react-native/ReactCommon/logger`)
   - React-Mapbuffer (from `../node_modules/react-native/ReactCommon`)
   - React-microtasksnativemodule (from `../node_modules/react-native/ReactCommon/react/nativemodule/microtasks`)
+  - react-native-fbsdk-next (from `../node_modules/react-native-fbsdk-next`)
+  - react-native-otp-verify (from `../node_modules/react-native-otp-verify`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - React-nativeconfig (from `../node_modules/react-native/ReactCommon`)
   - React-NativeModulesApple (from `../node_modules/react-native/ReactCommon/react/nativemodule/core/platform/ios`)
@@ -1611,11 +1663,23 @@ DEPENDENCIES:
   - ReactCodegen (from `build/generated/ios`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
+  - "RNGoogleSignin (from `../node_modules/@react-native-google-signin/google-signin`)"
   - RNScreens (from `../node_modules/react-native-screens`)
+  - RNSVG (from `../node_modules/react-native-svg`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
   trunk:
+    - AppAuth
+    - FBAEMKit
+    - FBSDKCoreKit
+    - FBSDKCoreKit_Basics
+    - FBSDKGamingServicesKit
+    - FBSDKLoginKit
+    - FBSDKShareKit
+    - GoogleSignIn
+    - GTMAppAuth
+    - GTMSessionFetcher
     - SocketRocket
 
 EXTERNAL SOURCES:
@@ -1690,6 +1754,10 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon"
   React-microtasksnativemodule:
     :path: "../node_modules/react-native/ReactCommon/react/nativemodule/microtasks"
+  react-native-fbsdk-next:
+    :path: "../node_modules/react-native-fbsdk-next"
+  react-native-otp-verify:
+    :path: "../node_modules/react-native-otp-verify"
   react-native-safe-area-context:
     :path: "../node_modules/react-native-safe-area-context"
   React-nativeconfig:
@@ -1746,17 +1814,31 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon"
   RNGestureHandler:
     :path: "../node_modules/react-native-gesture-handler"
+  RNGoogleSignin:
+    :path: "../node_modules/@react-native-google-signin/google-signin"
   RNScreens:
     :path: "../node_modules/react-native-screens"
+  RNSVG:
+    :path: "../node_modules/react-native-svg"
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
 SPEC CHECKSUMS:
+  AppAuth: 501c04eda8a8d11f179dbe8637b7a91bb7e5d2fa
   boost: 4cb898d0bf20404aab1850c656dcea009429d6c1
   DoubleConversion: 76ab83afb40bddeeee456813d9c04f67f78771b5
+  FBAEMKit: 9900b2edd99a2d21629a6277e6166f14c6215799
   FBLazyVector: 7b438dceb9f904bd85ca3c31d64cce32a035472b
+  FBSDKCoreKit: 0791f8f68a8630931a4c12aa23a56cc021551596
+  FBSDKCoreKit_Basics: 46d6b472c0dd0a5a7e972c025033d1c567f54eb4
+  FBSDKGamingServicesKit: 599a63c235776b7c6288d5dfd7c02edab9a1d3b7
+  FBSDKLoginKit: b4a4eba1d62eb452544411824f41689adabd5bd2
+  FBSDKShareKit: eb1169eafe3c06f881dc6deed2d7979585b16959
   fmt: 4c2741a687cc09f0634a2e2c72a838b99f1ff120
   glog: 69ef571f3de08433d766d614c73a9838a06bf7eb
+  GoogleSignIn: d4281ab6cf21542b1cfaff85c191f230b399d2db
+  GTMAppAuth: f69bd07d68cd3b766125f7e072c45d7340dea0de
+  GTMSessionFetcher: 5aea5ba6bd522a239e236100971f10cb71b96ab6
   hermes-engine: 3b6e0717ca847e2fc90a201e59db36caf04dee88
   RCT-Folly: 4464f4d875961fce86008d45f4ecf6cef6de0740
   RCTDeprecation: 4191f6e64b72d9743f6fe1a8a16e89e868f5e9e7
@@ -1787,6 +1869,8 @@ SPEC CHECKSUMS:
   React-logger: 4072f39df335ca443932e0ccece41fbeb5ca8404
   React-Mapbuffer: 714f2fae68edcabfc332b754e9fbaa8cfc68fdd4
   React-microtasksnativemodule: 4943ad8f99be8ccf5a63329fa7d269816609df9e
+  react-native-fbsdk-next: 84746ea062dc3b1a422154d7674ba4c5836b6d82
+  react-native-otp-verify: b524a7f44b691644bea08376d6a4782a2df57e09
   react-native-safe-area-context: 851c62c48dce80ccaa5637b6aa5991a1bc36eca9
   React-nativeconfig: 4a9543185905fe41014c06776bf126083795aed9
   React-NativeModulesApple: 0506da59fc40d2e1e6e12a233db5e81c46face27
@@ -1815,7 +1899,9 @@ SPEC CHECKSUMS:
   ReactCodegen: ff95a93d5ab5d9b2551571886271478eaa168565
   ReactCommon: 289214026502e6a93484f4a46bcc0efa4f3f2864
   RNGestureHandler: 3b6fa2bfa341c413d3d08444b838515b58e48ee7
+  RNGoogleSignin: 3e8b953338bcef2ed568420eb92cc24548bc3a6f
   RNScreens: 19719a9c326e925498ac3b2d35c4e50fe87afc06
+  RNSVG: 4590aa95758149fa27c5c83e54a6a466349a1688
   SocketRocket: abac6f5de4d4d62d24e11868d7a2f427e0ef940d
   Yoga: 1354c027ab07c7736f99a3bef16172d6f1b12b47
 

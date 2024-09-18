@@ -6,6 +6,7 @@ import {
     Platform,
     TouchableWithoutFeedback,
     Keyboard,
+    TouchableOpacity,
 } from 'react-native';
 import { CompositeAuthScreenProps } from '../../../navigation/type';
 import CPhoneInput from '../../../components/molecules/CPhoneInput';
@@ -17,40 +18,18 @@ import CInputWithLabel from '../../../components/molecules/CInputWithLabel';
 import DoNotHaveAccount from '../../../components/atoms/DoNotHaveAccount';
 import AllreadyHaveAccount from '../../../components/atoms/AllreadyHaveAccount';
 import { Formik } from 'formik';
-import * as Yup from 'yup';
-import { CountryCode, parsePhoneNumberFromString } from 'libphonenumber-js';
+import { CountryCode } from 'libphonenumber-js';
 import ForgetPassword from '../../../components/atoms/ForgetPassword';
-
-// Custom validation function
-const validatePhoneNumber = (phoneNumber: string, countryCode: CountryCode) => {
-    const phoneNumberObject = parsePhoneNumberFromString(phoneNumber, countryCode);
-    return phoneNumberObject ? phoneNumberObject.isValid() : false;
-};
-
-// Create a Yup schema function based on country code
-const createPhoneNumberSchema = (countryCode: CountryCode) => {
-    return Yup.object().shape({
-        phoneNumber: Yup.string()
-            .required('Phone number is required')
-            .test('is-valid-phone-number', 'Invalid phone number', value => validatePhoneNumber(value, countryCode)),
-    });
-};
-
-// Validation schemas
-const loginSchema = Yup.object().shape({
-    email: Yup.string().email('Invalid email').required('Required'),
-    password: Yup.string().min(6, 'Password too short').required('Required'),
-});
-
-const signupSchema = Yup.object().shape({
-    name: Yup.string().required('Required'),
-    email: Yup.string().email('Invalid email').required('Required'),
-    password: Yup.string().min(6, 'Password too short').required('Required'),
-});
+import { createPhoneNumberSchema, loginSchema, signupSchema } from '../../../utils/validationSchema/SignIn.schema';
+import { GoogleSigninButton } from '@react-native-google-signin/google-signin';
+import Divider from '../../../components/atoms/Divider';
+import FacebookIcon from '../../../assets/SignIn/icons/facebook.svg';
+import { facebookSignIn, googleSignIn } from '../../../services/SocialLogin';
 
 interface SignInScreenPropsType extends CompositeAuthScreenProps<'Signin'> { }
 
 const SignInScreen: React.FC<SignInScreenPropsType> = ({ navigation }) => {
+
     const [inputType, setInputType] = useState<'phone' | 'email'>('phone');
     const [emailFormType, setemailFormType] = useState<'login' | 'signup'>(
         'signup',
@@ -58,7 +37,6 @@ const SignInScreen: React.FC<SignInScreenPropsType> = ({ navigation }) => {
     const [CountryCodeString, setCountryCodeString] = useState<CountryCode>('IN')
 
     const getInitialValues = useCallback(() => {
-        // Wrap in useCallback
         if (inputType === 'phone') {
             return {
                 phoneNumber: '',
@@ -146,10 +124,10 @@ const SignInScreen: React.FC<SignInScreenPropsType> = ({ navigation }) => {
                                     />
                                     {emailFormType === 'login' ? (
                                         <>
-                                        <ForgetPassword onPress={()=>{}} />
-                                        <DoNotHaveAccount
-                                            onPress={() => setemailFormType('signup')}
-                                        />
+                                            <ForgetPassword onPress={() => { }} />
+                                            <DoNotHaveAccount
+                                                onPress={() => setemailFormType('signup')}
+                                            />
                                         </>
                                     ) : (
                                         <AllreadyHaveAccount
@@ -158,6 +136,11 @@ const SignInScreen: React.FC<SignInScreenPropsType> = ({ navigation }) => {
                                     )}
                                 </>
                             )}
+                            <Divider />
+                            <View style={{width : '100%' , justifyContent : 'center' , flexDirection : 'row' , gap : 10 , alignItems : 'center'}}>
+                                <GoogleSigninButton size={GoogleSigninButton.Size.Icon} onPress={()=>googleSignIn()} />
+                                <TouchableOpacity onPress={()=>facebookSignIn()}><FacebookIcon width={40} height={40} /></TouchableOpacity>
+                            </View>
                         </View>
                         <CButton
                             onPress={handleSubmit}
@@ -171,7 +154,7 @@ const SignInScreen: React.FC<SignInScreenPropsType> = ({ navigation }) => {
                 )}
             </Formik>
         ),
-        [inputType, emailFormType, getInitialValues, CountryCodeString , navigation],
+        [inputType, emailFormType, getInitialValues, CountryCodeString, navigation],
     );
 
     return (
@@ -179,13 +162,13 @@ const SignInScreen: React.FC<SignInScreenPropsType> = ({ navigation }) => {
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <KeyboardAvoidingView
                     behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
-                        <SegmentedControl
-                                tabs={['Phone Number', 'Email Address']}
-                                value={inputType === 'phone' ? 0 : 1}
-                                onChange={(index: number) => {
-                                    setInputType(index === 0 ? 'phone' : 'email');
-                                }}
-                            />
+                    <SegmentedControl
+                        tabs={['Phone Number', 'Email Address']}
+                        value={inputType === 'phone' ? 0 : 1}
+                        onChange={(index: number) => {
+                            setInputType(index === 0 ? 'phone' : 'email');
+                        }}
+                    />
                     <Form />
                 </KeyboardAvoidingView>
             </TouchableWithoutFeedback>
@@ -199,7 +182,8 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        width : '100%',
+        width: '100%',
+        backgroundColor : '#fff'
     },
     phoneInputContainer: {
         flexGrow: 1,

@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">ppsbaseapp</string>
+    <string name="facebook_app_id">549397430852816</string>
+    <string name="facebook_client_token">a923361cf2b2a5752932691d22792468</string>
 </resources>

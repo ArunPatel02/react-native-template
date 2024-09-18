@@ -1,0 +1,48 @@
+{
+    "project_info": {
+      "project_number": "214366019950",
+      "project_id": "ppsbaseapp-436006",
+      "storage_bucket": "ppsbaseapp-436006.appspot.com"
+    },
+    "client": [
+      {
+        "client_info": {
+          "mobilesdk_app_id": "1:214366019950:android:611010151c401641e8e17f",
+          "android_client_info": {
+            "package_name": "com.ppsbaseapp"
+          }
+        },
+        "oauth_client": [
+          {
+            "client_id": "214366019950-ivid8qsugun6fk6jg0j6es0k1i4hrdac.apps.googleusercontent.com",
+            "client_type": 1,
+            "android_info": {
+              "package_name": "com.ppsbaseapp",
+              "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+            }
+          },
+          {
+            "client_id": "214366019950-kdskhbvic0h5d2mvpunu368bs77tbond.apps.googleusercontent.com",
+            "client_type": 3
+          }
+        ],
+        "api_key": [
+          {
+            "current_key": "AIzaSyA8H3WZFewkKYo5rMP0DaC6b7tGnQm0qjM"
+          }
+        ],
+        "services": {
+          "appinvite_service": {
+            "other_platform_oauth_client": [
+              {
+                "client_id": "214366019950-kdskhbvic0h5d2mvpunu368bs77tbond.apps.googleusercontent.com",
+                "client_type": 3
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "configuration_version": "1"
+  }
+  

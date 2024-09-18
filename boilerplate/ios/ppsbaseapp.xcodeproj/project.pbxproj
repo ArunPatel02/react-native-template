@@ -15,6 +15,7 @@
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		C294492C971E0AF60CF1BB30 /* libPods-ppsbaseapp-ppsbaseappTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FA8F3A7B0F57A55F6F72293B /* libPods-ppsbaseapp-ppsbaseappTests.a */; };
 		D0E0D39051EDEF3A0B901558 /* libPods-ppsbaseapp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5531BC9E956DF4063AC5E290 /* libPods-ppsbaseapp.a */; };
+		EB61E3842C9AB3C800B62929 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EB61E3832C9AB3C800B62929 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,7 +45,8 @@
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = ppsbaseapp/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B70CB229323880FDCC887353 /* Pods-ppsbaseapp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ppsbaseapp.release.xcconfig"; path = "Target Support Files/Pods-ppsbaseapp/Pods-ppsbaseapp.release.xcconfig"; sourceTree = "<group>"; };
 		CE0FD3E9FD69AF3C7BA98870 /* Pods-ppsbaseapp-ppsbaseappTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ppsbaseapp-ppsbaseappTests.debug.xcconfig"; path = "Target Support Files/Pods-ppsbaseapp-ppsbaseappTests/Pods-ppsbaseapp-ppsbaseappTests.debug.xcconfig"; sourceTree = "<group>"; };
-		CE335F79719968D1EEE2AF87 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = ppsbaseapp/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		CE335F79719968D1EEE2AF87 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = ppsbaseapp/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		EB61E3832C9AB3C800B62929 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "ppsbaseapp/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		FA8F3A7B0F57A55F6F72293B /* libPods-ppsbaseapp-ppsbaseappTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ppsbaseapp-ppsbaseappTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -89,6 +91,7 @@
 		13B07FAE1A68108700A75B9A /* ppsbaseapp */ = {
 			isa = PBXGroup;
 			children = (
+				EB61E3832C9AB3C800B62929 /* GoogleService-Info.plist */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
@@ -247,6 +250,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
+				EB61E3842C9AB3C800B62929 /* GoogleService-Info.plist in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				40FA5DE2776AD620B38CAB01 /* PrivacyInfo.xcprivacy in Resources */,
 			);
