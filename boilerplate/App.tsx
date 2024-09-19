@@ -5,13 +5,73 @@
  * @format
  */
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import Navigation from './src/navigation/RootStack';
-import { StatusBar } from 'react-native';
+import { AppState, Platform, StatusBar } from 'react-native';
+import { requestUserPermission } from './src/utils/firebaseHelpers';
+import { MESSAGING } from './src/utils/constants';
+import PushNotification from 'react-native-push-notification';
+import { FCM_TOKEN, UNREAD_NOTIFICATION } from './src/utils/local.constants';
+import { _setDataToAsyncStorage } from './src/utils/Localstorage';
+
 
 
 const App: React.FC = () => {
+
+  useEffect(() => {
+    requestUserPermission()
+
+    MESSAGING.onTokenRefresh(async newToken => {
+      console.log('newToken', newToken);
+      await _setDataToAsyncStorage(FCM_TOKEN, newToken); //pass refresh token to your api endpoint
+    })
+
+    const unsubscribe = MESSAGING.onMessage(async remoteMessage => {
+      try {
+        console.log(
+          'A new FCM message arrived!',
+          JSON.stringify(remoteMessage),
+        );
+        await _setDataToAsyncStorage(
+          UNREAD_NOTIFICATION,
+          JSON.stringify(
+            Platform.OS === 'android'
+              ? remoteMessage?.notification?.android?.count || '0'
+              : remoteMessage?.notification?.ios?.badge || '0',
+          ),
+        );
+        const msg = remoteMessage.notification;
+        PushNotification.localNotification({
+          title: msg?.title, // (optional)
+          channelId: '123',
+          message: msg?.body, // (required)
+          playSound: true, // (optional) default: true
+          soundName: 'default', // (optional) Sound to play when the notification is shown. Value of 'default' plays the default sound. It can be set to a custom sound such as 'android.resource://com.xyz/raw/my_sound'. It will look for the 'my_sound' audio file in 'res/raw' directory and play it. default: 'default' (default sound is played)
+          vibrate: true,
+        });
+      } catch (error) {
+        console.log('error in foreground notificaiton');
+      }
+    });
+
+    // app state change
+    const subscription = AppState.addEventListener('change', nextAppState => {
+      if (nextAppState === 'active') {
+        console.log(
+          'App has come to the foreground! =================================================',
+        );
+      }
+    });
+
+    // check force update
+    // checkUpdate();
+    return () => {
+      unsubscribe;
+      subscription.remove();
+    };
+  }, [])
+
   return (
     <SafeAreaProvider>
       <StatusBar translucent backgroundColor={'transparent'}/>

@@ -6,7 +6,6 @@ import {
     Platform,
     TouchableWithoutFeedback,
     Keyboard,
-    TouchableOpacity,
 } from 'react-native';
 import { CompositeAuthScreenProps } from '../../../navigation/type';
 import CPhoneInput from '../../../components/molecules/CPhoneInput';
@@ -21,10 +20,9 @@ import { Formik } from 'formik';
 import { CountryCode } from 'libphonenumber-js';
 import ForgetPassword from '../../../components/atoms/ForgetPassword';
 import { createPhoneNumberSchema, loginSchema, signupSchema } from '../../../utils/validationSchema/SignIn.schema';
-import { GoogleSigninButton } from '@react-native-google-signin/google-signin';
 import Divider from '../../../components/atoms/Divider';
-import FacebookIcon from '../../../assets/SignIn/icons/facebook.svg';
-import { facebookSignIn, googleSignIn } from '../../../services/SocialLogin';
+import SocialLogin from '../../../components/organisms/SocialLogin';
+import { userSignIn } from '../../../services/SignInServices/userSignin.service';
 
 interface SignInScreenPropsType extends CompositeAuthScreenProps<'Signin'> { }
 
@@ -66,9 +64,14 @@ const SignInScreen: React.FC<SignInScreenPropsType> = ({ navigation }) => {
                             : loginSchema
                         : createPhoneNumberSchema(CountryCodeString)
                 }
-                onSubmit={values => {
+                onSubmit={async (values) => {
                     console.log(values);
-                    navigation.navigate('Verification');
+                    try {
+                        await userSignIn(values)
+                        navigation.navigate('Verification');
+                    } catch (error) {
+                        console.log('error while regestering the user' , error)
+                    }
 
                 }}>
                 {({ handleChange, handleSubmit, values, errors }) => (
@@ -137,10 +140,7 @@ const SignInScreen: React.FC<SignInScreenPropsType> = ({ navigation }) => {
                                 </>
                             )}
                             <Divider />
-                            <View style={{width : '100%' , justifyContent : 'center' , flexDirection : 'row' , gap : 10 , alignItems : 'center'}}>
-                                <GoogleSigninButton size={GoogleSigninButton.Size.Icon} onPress={()=>googleSignIn()} />
-                                <TouchableOpacity onPress={()=>facebookSignIn()}><FacebookIcon width={40} height={40} /></TouchableOpacity>
-                            </View>
+                            <SocialLogin />
                         </View>
                         <CButton
                             onPress={handleSubmit}

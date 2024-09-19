@@ -5,6 +5,8 @@ import Onboarding, { DoneButtonProps, NextButtonProps, SkipButtonProps } from 'r
 import { RootStackPropsType } from '../../navigation/type';
 import OnBoardingButton from '../../components/atoms/OnBoardingButton/Index';
 import OnBoardingDots from '../../components/atoms/OnBoardingDots';
+import { _setDataToAsyncStorage } from '../../utils/Localstorage';
+import { ONBAORDIND_TOUR } from '../../utils/local.constants';
 
 
 
@@ -15,14 +17,18 @@ const DoneButton : React.FC<DoneButtonProps> = (props) => <OnBoardingButton {...
 interface OnboardingScreenPropsType extends RootStackPropsType<'Welcome'>{}
 
 const OnboardingScreen : React.FC<OnboardingScreenPropsType> = ({navigation}) => {
+  const handleSkipAndDone = async()=>{
+    await _setDataToAsyncStorage(ONBAORDIND_TOUR , 'done')
+    navigation.replace('Auth' , {screen : 'Signin'})
+  }
     return (
         <Onboarding
         SkipButtonComponent={SkipButton}
         NextButtonComponent={NextButton}
         DoneButtonComponent={DoneButton}
         DotComponent={OnBoardingDots}
-        onSkip={() => navigation.replace('Auth')}
-        onDone={() => navigation.replace('Auth')}
+        onSkip={() => navigation.replace('Auth' , {screen : 'Signin'})}
+        onDone={() => handleSkipAndDone()}
         pages={[
           {
             backgroundColor: '#a6e4d0',
