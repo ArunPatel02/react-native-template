@@ -14,6 +14,9 @@ import { MESSAGING } from './src/utils/constants';
 import PushNotification from 'react-native-push-notification';
 import { FCM_TOKEN, UNREAD_NOTIFICATION } from './src/utils/local.constants';
 import { _setDataToAsyncStorage } from './src/utils/Localstorage';
+import { Provider } from 'react-redux';
+import { store } from './src/store/store';
+import { ThemeProvider } from './src/theme/ThemeProvider';
 
 
 
@@ -73,10 +76,14 @@ const App: React.FC = () => {
   }, [])
 
   return (
+    <ThemeProvider>
+    <Provider store={store}>
     <SafeAreaProvider>
       <StatusBar translucent backgroundColor={'transparent'}/>
       <Navigation />
     </SafeAreaProvider>
+    </Provider>
+    </ThemeProvider>
   );
 }
 

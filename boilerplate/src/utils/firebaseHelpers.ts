@@ -1,6 +1,8 @@
 import {PermissionsAndroid, Platform} from 'react-native';
 import messaging from '@react-native-firebase/messaging';
 import {MESSAGING} from './constants';
+import { _setDataToAsyncStorage } from './Localstorage';
+import { FCM_TOKEN } from './local.constants';
 
 const requestUserPermission = async () => {
   try {
@@ -68,7 +70,7 @@ const getFCMToken = async () => {
     }
     const fcmToken = await MESSAGING.getToken().then(res => res);
     console.log({fcmToken});
-    // await _setDataToAsyncStorage(FCM_TOKEN, fcmToken);
+    await _setDataToAsyncStorage(FCM_TOKEN, fcmToken);
     return fcmToken;
   } catch (error) {
     console.log('Errro getting token', error);

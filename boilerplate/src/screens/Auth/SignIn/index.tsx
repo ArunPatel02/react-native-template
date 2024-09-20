@@ -23,10 +23,28 @@ import { createPhoneNumberSchema, loginSchema, signupSchema } from '../../../uti
 import Divider from '../../../components/atoms/Divider';
 import SocialLogin from '../../../components/organisms/SocialLogin';
 import { userSignIn } from '../../../services/SignInServices/userSignin.service';
+import { useTheme } from '../../../theme/ThemeProvider';
 
 interface SignInScreenPropsType extends CompositeAuthScreenProps<'Signin'> { }
 
 const SignInScreen: React.FC<SignInScreenPropsType> = ({ navigation }) => {
+
+    const theme = useTheme()
+
+    const styles = StyleSheet.create({
+        container: {
+            flex: 1,
+            justifyContent: 'center',
+            alignItems: 'center',
+            width: '100%',
+            backgroundColor : theme.colors.background
+        },
+        phoneInputContainer: {
+            flexGrow: 1,
+            justifyContent: 'center',
+            gap: moderateScale(10),
+        },
+    });
 
     const [inputType, setInputType] = useState<'phone' | 'email'>('phone');
     const [emailFormType, setemailFormType] = useState<'login' | 'signup'>(
@@ -175,21 +193,5 @@ const SignInScreen: React.FC<SignInScreenPropsType> = ({ navigation }) => {
         </SafeAreaView>
     );
 };
-
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        width: '100%',
-        backgroundColor : '#fff'
-    },
-    phoneInputContainer: {
-        flexGrow: 1,
-        justifyContent: 'center',
-        gap: moderateScale(10),
-    },
-});
 
 export default SignInScreen;

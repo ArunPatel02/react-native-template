@@ -1,10 +1,12 @@
 import { NavigationContainer, NavigatorScreenParams } from '@react-navigation/native';
 import { createStackNavigator, StackNavigationOptions } from '@react-navigation/stack';
-import React from 'react';
+import React, { useContext } from 'react';
 import SplashStack, { SplashStackParamList } from '../SplashStack';
 import OnboardingScreen from '../../screens/OnBoarding';
 import AuthStack, { AuthStackParamList } from '../AuthStack';
 import AppStack, { AppStackParamList } from '../AppStack';
+import { ThemeContext } from '../../theme/ThemeProvider';
+import themes from '../../theme/theme';
 
 //RootStacks object define all the stacks name inside RootS stack
 export const RootStacks = {
@@ -30,8 +32,12 @@ const screenOptions: StackNavigationOptions = {
 };
 
   const Navigation : React.FC = ()=>{
+    const { theme } = useContext(ThemeContext);
+    const currentTheme = theme === 'dark' ? themes.dark : themes.light;
+
     return (
-      <NavigationContainer>
+      //@ts-expect-error
+      <NavigationContainer theme={currentTheme}>
         <Stack.Navigator screenOptions={screenOptions}>
           <Stack.Screen name={RootStacks.SPLASH} component={SplashStack} />
           <Stack.Screen name={RootStacks.WELCOME} component={OnboardingScreen} />
