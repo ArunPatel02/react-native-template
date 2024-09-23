@@ -6,8 +6,8 @@ import CInput from '../../atoms/CInput';
 
 interface CInputWithLabelProps extends TextInputProps {
     value: string;
-    onChangeText: (text: string) => void;
-    errorMessage: string;
+    onChangeText?: (text: string) => void;
+    errorMessage?: string;
     label : string
 }
 

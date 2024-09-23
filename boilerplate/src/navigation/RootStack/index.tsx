@@ -1,6 +1,6 @@
-import { NavigationContainer, NavigatorScreenParams } from '@react-navigation/native';
+import { NavigationContainer, NavigatorScreenParams, useNavigationContainerRef } from '@react-navigation/native';
 import { createStackNavigator, StackNavigationOptions } from '@react-navigation/stack';
-import React, { useContext } from 'react';
+import React, { useContext, useRef } from 'react';
 import SplashStack, { SplashStackParamList } from '../SplashStack';
 import OnboardingScreen from '../../screens/OnBoarding';
 import AuthStack, { AuthStackParamList } from '../AuthStack';
@@ -34,10 +34,32 @@ const screenOptions: StackNavigationOptions = {
   const Navigation : React.FC = ()=>{
     const { theme } = useContext(ThemeContext);
     const currentTheme = theme === 'dark' ? themes.dark : themes.light;
+    const navigationRef = useNavigationContainerRef();
+    const routeNameRef = useRef<any>();
+
+    const trackScreenView = async (currentScreen : string | undefined) => {
+      console.log("this is currentView --- ", currentScreen)
+    }
 
     return (
       //@ts-expect-error
-      <NavigationContainer theme={currentTheme}>
+      <NavigationContainer theme={currentTheme} ref={navigationRef}  onReady={() => {
+        routeNameRef.current = navigationRef?.getCurrentRoute()?.name;
+      }}
+      onStateChange={async () => {
+        const previousRouteName = routeNameRef.current;
+        const currentRouteName = navigationRef?.getCurrentRoute()?.name;
+        // dispatch.general.setCurrentScreen(currentRouteName);
+        console.log("previous route name: " + previousRouteName)
+        console.log("current route name: " + currentRouteName)
+        if (previousRouteName !== currentRouteName) {
+          // Save the current route name for later comparison
+          routeNameRef.current = currentRouteName;
+
+          // Replace the line below to add the tracker from a mobile analytics SDK
+          await trackScreenView(currentRouteName);
+        }
+      }} >
         <Stack.Navigator screenOptions={screenOptions}>
           <Stack.Screen name={RootStacks.SPLASH} component={SplashStack} />
           <Stack.Screen name={RootStacks.WELCOME} component={OnboardingScreen} />

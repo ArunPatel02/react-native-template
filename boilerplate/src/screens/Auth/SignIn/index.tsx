@@ -37,7 +37,7 @@ const SignInScreen: React.FC<SignInScreenPropsType> = ({ navigation }) => {
             justifyContent: 'center',
             alignItems: 'center',
             width: '100%',
-            backgroundColor : theme.colors.background
+            backgroundColor : theme.colors.background,
         },
         phoneInputContainer: {
             flexGrow: 1,
@@ -172,7 +172,7 @@ const SignInScreen: React.FC<SignInScreenPropsType> = ({ navigation }) => {
                 )}
             </Formik>
         ),
-        [inputType, emailFormType, getInitialValues, CountryCodeString, navigation],
+        [inputType, emailFormType, getInitialValues, CountryCodeString, navigation , styles.phoneInputContainer],
     );
 
     return (

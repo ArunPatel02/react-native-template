@@ -1,6 +1,8 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import React from 'react';
 import { Text } from 'react-native';
+import SettingsScreen from '../../../screens/App/Setting';
+import HomeScreen from '../../../screens/App/Home';
 
   const Home = ()=>{
     return (<Text>Home Page</Text>)
@@ -28,8 +30,8 @@ import { Text } from 'react-native';
       <Tab.Navigator
         initialRouteName={BottomTabNavigationScreens.HOME}>
           {/* as React.CoponentType define screen type with empty props if you want to pass the props you can define inide the empty object {} */}
-        <Tab.Screen name={BottomTabNavigationScreens.HOME} component={Home as React.ComponentType<{}>} />
-        <Tab.Screen name={BottomTabNavigationScreens.SETTING} component={Home as React.ComponentType<{}>} />
+        <Tab.Screen name={BottomTabNavigationScreens.HOME} component={HomeScreen as React.ComponentType<{}>} />
+        <Tab.Screen name={BottomTabNavigationScreens.SETTING} component={SettingsScreen as React.ComponentType<{}>} />
         <Tab.Screen name={BottomTabNavigationScreens.PROFILE} component={Home as React.ComponentType<{}>} />
         {/* <Stack.Screen name={BottomTabNavigationScreens.Verification} component={Verification as React.ComponentType<{}>} /> */}
       </Tab.Navigator>

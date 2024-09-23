@@ -1,5 +1,6 @@
 import { scale } from "react-native-size-matters";
 
+
 const fonts: {
     thin: '100',
     extraLight: '200',
@@ -45,6 +46,7 @@ export interface ThemeInterface {
         onBackground: string;
         onSurface: string;
         onError: string;
+        card: string;
     };
     fonts: typeof fonts;
     fontSize: typeof fontSize;
@@ -65,6 +67,7 @@ export const themes: { light: ThemeInterface, dark: ThemeInterface } = {
             onBackground: '#000000',
             onSurface: '#000000',
             onError: '#ffffff',
+            card : '#ffffff',
         },
         fonts: fonts,
         fontSize: fontSize,
@@ -83,6 +86,7 @@ export const themes: { light: ThemeInterface, dark: ThemeInterface } = {
             onBackground: '#ffffff',
             onSurface: '#ffffff',
             onError: '#000000',
+            card: '#000000',
         },
         fonts: fonts,
         fontSize: fontSize,

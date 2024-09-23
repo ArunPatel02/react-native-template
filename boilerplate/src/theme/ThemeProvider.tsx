@@ -1,6 +1,8 @@
 import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react';
 import themes, { ThemeInterface } from './theme';
 import { useColorScheme } from 'react-native';
+import { _setDataToAsyncStorage, getValueFromAsyncStorage } from '../utils/Localstorage';
+import { MODE } from '../utils/local.constants';
 
 interface ThemeContextType {
   theme: 'light' | 'dark';
@@ -12,15 +14,23 @@ export const ThemeContext = createContext<ThemeContextType>({theme : 'light' , t
 export const ThemeProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
 
-  const toggleTheme = () => {
+  const toggleTheme = async() => {
+    _setDataToAsyncStorage(MODE , theme === 'light' ? 'dark' : 'light')
     setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
-  };
+  }; 
 
   const colorSchema = useColorScheme()
 
   useEffect(() => {
-    console.log(colorSchema)
-    setTheme(colorSchema as 'dark'|'light')
+    getValueFromAsyncStorage(MODE).then(value=>{
+      if(value){
+        setTheme(value as 'light' | 'dark')
+      }else {
+        console.log(colorSchema)
+        setTheme(colorSchema as 'dark'|'light')
+      }
+    })
+    
   }, [colorSchema]);
 
   return (

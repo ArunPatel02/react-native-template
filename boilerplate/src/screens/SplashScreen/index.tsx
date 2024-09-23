@@ -124,7 +124,7 @@ const SplashScreen: React.FC<SplashScreenPropsType> = ({ navigation }) => {
       }
     } catch (error) {
       console.log('error while geting the initial data ', error)
-      navigation.navigate('Welcome')
+      navigation.navigate('App')
     }
   }, [navigation, setSystemheadersData])
 

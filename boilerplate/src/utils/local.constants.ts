@@ -5,6 +5,7 @@ const ONBAORDIND_TOUR = 'ONBAORDIND_TOUR';
 const FCM_TOKEN = 'FCM_TOKEN';
 const UNREAD_NOTIFICATION = 'UNREAD_NOTIFICATION';
 const LOGIN_TYPE = 'login_type';
+const MODE = 'mode'
 
 const ENVIRONMENT = {
     STAGING: 'STAGING',
@@ -32,7 +33,8 @@ export {
     ONBAORDIND_TOUR,
     FCM_TOKEN,
     UNREAD_NOTIFICATION,
+    MODE,
     LOGIN_TYPE,
     currentEnv,
-    envVariables
+    envVariables,
 }
