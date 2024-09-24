@@ -1,4 +1,4 @@
-import { scale } from "react-native-size-matters";
+import { moderateScale } from "react-native-size-matters";
 
 
 const fonts: {
@@ -24,12 +24,12 @@ const fonts: {
 }
 
 const fontSize = {
-    xs: scale(10),
-    s: scale(12),
-    m: scale(16),
-    l: scale(20),
-    xl: scale(24),
-    xxl: scale(30),
+    xs: moderateScale(8),
+    s: moderateScale(12),
+    m: moderateScale(16),
+    l: moderateScale(20),
+    xl: moderateScale(24),
+    xxl: moderateScale(28),
 };
 
 export interface ThemeInterface {
@@ -47,6 +47,7 @@ export interface ThemeInterface {
         onSurface: string;
         onError: string;
         card: string;
+        placeholderTextColor : string
     };
     fonts: typeof fonts;
     fontSize: typeof fontSize;
@@ -68,6 +69,7 @@ export const themes: { light: ThemeInterface, dark: ThemeInterface } = {
             onSurface: '#000000',
             onError: '#ffffff',
             card : '#ffffff',
+            placeholderTextColor: '#a1a1a1', // Light mode placeholder text color
         },
         fonts: fonts,
         fontSize: fontSize,
@@ -87,6 +89,7 @@ export const themes: { light: ThemeInterface, dark: ThemeInterface } = {
             onSurface: '#ffffff',
             onError: '#000000',
             card: '#000000',
+            placeholderTextColor: '#e0e0e0' // Light white color for placeholder
         },
         fonts: fonts,
         fontSize: fontSize,

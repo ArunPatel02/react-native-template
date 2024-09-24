@@ -4,6 +4,7 @@ import FacebookIcon from '../../../assets/SignIn/icons/facebook.svg';
 import { Platform } from 'react-native';
 import { LoginManager, Profile } from 'react-native-fbsdk-next';
 
+//function to get profile after successful login
 const getProfile = () => {
     Profile.getCurrentProfile().then(function (currentProfile) {
         if (currentProfile) {
@@ -15,9 +16,11 @@ const getProfile = () => {
             );
         }
     });
-}
+};
 
+//custom facebook sigin function
 export const facebookSignIn = () => {
+    //check if plathform is ios we have to use limited login
     if (Platform.OS === 'ios') {
         LoginManager.logInWithPermissions(['public_profile', 'email'] , 'limited').then(
             function (result) {
@@ -59,6 +62,7 @@ export const facebookSignIn = () => {
     }
 };
 
+//cutom facebook sign in buttom
 const FacebookSignIn: React.FC = () => {
     return (
         <TouchableOpacity onPress={()=>facebookSignIn()}><FacebookIcon width={40} height={40} /></TouchableOpacity>

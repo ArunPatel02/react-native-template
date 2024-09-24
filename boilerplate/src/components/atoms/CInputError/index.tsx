@@ -1,23 +1,25 @@
 import React from 'react';
 import { Text, StyleSheet } from 'react-native';
-import { moderateScale, verticalScale } from 'react-native-size-matters';
+import { useTheme } from '../../../theme/ThemeProvider';
 
 interface CInputErrorProps {
     errorMessage: string;
 }
 
+//cutom error component to show error message
 const CInputError: React.FC<CInputErrorProps> = ({ errorMessage }) => {
+    const Theme = useTheme();
+    const styles = StyleSheet.create({
+        errorText: {
+            fontSize: Theme.fontSize.s,
+            color: Theme.colors.error,
+            marginTop: 4,
+        },
+    });
+
     return (
         <Text style={styles.errorText}>{errorMessage}</Text>
     );
 };
-
-const styles = StyleSheet.create({
-    errorText: {
-        fontSize: moderateScale(14),
-        color: 'red',
-        marginTop: verticalScale(4),
-    },
-});
 
 export default CInputError;

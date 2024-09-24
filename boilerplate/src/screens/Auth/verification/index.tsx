@@ -18,12 +18,47 @@ import { verticalScale } from 'react-native-size-matters';
 import CButton from '../../../components/atoms/CButton';
 import { CompositeAuthScreenProps } from '../../../navigation/type';
 import { OtpInput } from '../../../components/atoms/CInput';
+import { useTheme } from '@react-navigation/native';
 
 interface VerificationScreenPropsType extends CompositeAuthScreenProps<'Verification'> { }
 
 const VerificationScreen: React.FC<VerificationScreenPropsType> = ({
   navigation,
 }) => {
+
+  const Theme = useTheme();
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    inputs: {
+      color: Theme.colors.text,
+      textAlign: 'center',
+      fontSize: 35,
+      fontWeight: 'bold',
+      paddingHorizontal: 0,
+      borderColor : Theme.colors.text,
+    },
+    ext: {
+      marginBottom: 0,
+      borderBottomWidth: 2,
+      borderColor : Theme.colors.text,
+      width: 30,
+      padding: 0,
+      justifyContent: 'center',
+    },
+    otpInputWrapper: { flexGrow: 1, justifyContent: 'center', alignItems: 'center' },
+    otpInputContainer: {
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      flexDirection: 'row',
+      marginTop: verticalScale(30),
+      width: '90%',
+    }
+  });
+
   const [code1, setCode1] = React.useState('');
   const [code2, setCode2] = React.useState('');
   const [code3, setCode3] = React.useState('');
@@ -295,33 +330,3 @@ const VerificationScreen: React.FC<VerificationScreenPropsType> = ({
 
 //
 export default VerificationScreen;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  inputs: {
-    color: 'black',
-    textAlign: 'center',
-    fontSize: 35,
-    fontWeight: 'bold',
-    paddingHorizontal: 0,
-  },
-  ext: {
-    marginBottom: 0,
-    borderBottomWidth: 2,
-    width: 30,
-    padding: 0,
-    justifyContent: 'center',
-  },
-  otpInputWrapper: { flexGrow: 1, justifyContent: 'center', alignItems: 'center' },
-  otpInputContainer: {
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    flexDirection: 'row',
-    marginTop: verticalScale(30),
-    width: '90%',
-  }
-});

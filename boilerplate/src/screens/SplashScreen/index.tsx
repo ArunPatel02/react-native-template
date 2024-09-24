@@ -1,5 +1,5 @@
 import React, { useEffect, useCallback, useState } from 'react';
-import { Text, StyleSheet, Modal, View } from 'react-native';
+import { Text, StyleSheet, Modal, View, Dimensions } from 'react-native';
 import { CompositeSplashScreenProps } from '../../navigation/type';
 import { moderateScale, scale, verticalScale } from 'react-native-size-matters';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -28,6 +28,9 @@ interface SplashScreenPropsType extends CompositeSplashScreenProps<'Splash'> { }
 const SplashScreen: React.FC<SplashScreenPropsType> = ({ navigation }) => {
   const dipatch = useAppDispatch();
   const theme = useTheme()
+
+  const {width} = Dimensions.get('screen')
+  console.log('----------device width: ' + width)
 
   const styles = StyleSheet.create({
     container: {
@@ -92,6 +95,9 @@ const SplashScreen: React.FC<SplashScreenPropsType> = ({ navigation }) => {
       device_date_time,
       device_timezone,
     };
+    console.log('------------------ device info --------------------');
+    console.log({...deviceInfo});
+    console.log('------------------------------------------------------------');
     dipatch(setSystemData(deviceInfo));
   }, [dipatch]); // Added dipatch as a dependency
 
@@ -99,13 +105,15 @@ const SplashScreen: React.FC<SplashScreenPropsType> = ({ navigation }) => {
   const initializeApp = useCallback(async () => {
     try {
       await setSystemheadersData();
-      const forceUpdate = await checkForceUpdate()
-      if (forceUpdate) {
+      const forceUpdateResponse = await checkForceUpdate();
+      if (forceUpdateResponse) {
         setModalVisible(true)
-        if (forceUpdate.type === 'force') {
-          setforceUpdate(true)
+        if (forceUpdateResponse.type === 'force') {
+          setforceUpdate(true);
         }
       }
+
+      //function to get auth user if token present
       const user = await getAuthUser();
       if (user) {
         //save the data in redux from here and navigate to home if user is there
@@ -124,7 +132,17 @@ const SplashScreen: React.FC<SplashScreenPropsType> = ({ navigation }) => {
       }
     } catch (error) {
       console.log('error while geting the initial data ', error)
-      navigation.navigate('App')
+      getValueFromAsyncStorage(ONBAORDIND_TOUR).then(OnBoardingDone => {
+        // Hide the splash screen after 2 seconds
+        setTimeout(() => {
+          if (!OnBoardingDone) {
+            navigation.replace('Welcome');
+          } else {
+            // navigation.navigate('App')
+            navigation.navigate('Auth', { screen: 'Signin' })
+          }
+        }, 2000);
+      });
     }
   }, [navigation, setSystemheadersData])
 

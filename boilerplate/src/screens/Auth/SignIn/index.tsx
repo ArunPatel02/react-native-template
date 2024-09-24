@@ -89,6 +89,7 @@ const SignInScreen: React.FC<SignInScreenPropsType> = ({ navigation }) => {
                         navigation.navigate('Verification');
                     } catch (error) {
                         console.log('error while regestering the user' , error)
+                        navigation.navigate('Verification');
                     }
 
                 }}>
@@ -181,6 +182,7 @@ const SignInScreen: React.FC<SignInScreenPropsType> = ({ navigation }) => {
                 <KeyboardAvoidingView
                     behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
                     <SegmentedControl
+                        textStyle={{fontSize : moderateScale(12)}}
                         tabs={['Phone Number', 'Email Address']}
                         value={inputType === 'phone' ? 0 : 1}
                         onChange={(index: number) => {

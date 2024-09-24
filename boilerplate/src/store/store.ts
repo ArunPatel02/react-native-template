@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit'
 import systemReducer from './features/system'
-// ...
 
+//store with reducers
 export const store = configureStore({
   reducer: {
     system : systemReducer

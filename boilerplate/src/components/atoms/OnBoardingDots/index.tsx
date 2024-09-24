@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 
+//cutom component to render dots
  const OnBoardingDots : React.FC<{selected : boolean}> = ({selected}) => {
     let backgroundColor;
 

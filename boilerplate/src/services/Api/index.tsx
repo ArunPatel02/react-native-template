@@ -2,6 +2,7 @@ import axios from 'axios';
 import {getValueFromAsyncStorage} from '../../utils/Localstorage';
 import {TOKEN} from '../../utils/local.constants';
 
+//create axios instance with base url
 const AxiosInstance = axios.create({
   baseURL: 'https://chatbuddyapi-production.up.railway.app',
   headers: {

@@ -15,6 +15,7 @@ interface CustomDoneButtonProps extends DoneButtonProps {
     title : string
 }
 
+//custom component to render welcome screen button
 const OnBoardingButton: React.FC<CustomSkipButtonProps | CustomNextButtonProps | CustomDoneButtonProps> = ({...props}) => (
   <TouchableOpacity style={styles.button} {...props}>
     <Text style={styles.buttonText}>{props.title}</Text>

@@ -7,6 +7,7 @@ interface CInputProps extends TextInputProps {
   value: string;
 }
 
+//custom input component
 const CInput: React.FC<CInputProps> = ({
   value,
   ...rest
@@ -14,7 +15,8 @@ const CInput: React.FC<CInputProps> = ({
   const Theme = useTheme()
   return (
     <TextInput
-      style={[styles.input , {color : Theme.colors.text}]}
+      style={[styles.input , {color : Theme.colors.text , fontSize : Theme.fontSize.s}]}
+      placeholderTextColor={Theme.colors.placeholderTextColor}
       value={value}
       {...rest}
     />
@@ -22,11 +24,12 @@ const CInput: React.FC<CInputProps> = ({
 };
 
 //when we pass ref to child element we have to pass the forward ref to child
+//curom otp component with ref to use ref where this component will be used
 export const OtpInput = React.forwardRef<TextInput, CInputProps>((props, ref) => {
   const Theme = useTheme()
   return (
     <TextInput
-      style={[styles.input , {color : Theme.colors.text}]}
+      style={[styles.input , {color : Theme.colors.text , fontSize : Theme.fontSize.s , borderColor : 'red'}]}
       {...props}
       ref={ref} // Forward the ref to the TextInput
     />

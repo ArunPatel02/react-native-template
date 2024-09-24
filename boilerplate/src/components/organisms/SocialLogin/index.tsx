@@ -3,6 +3,7 @@ import { View, StyleSheet } from 'react-native';
 import GoogleLoginButton from '../../../components/molecules/GoogleLogin';
 import FacebookSignIn from '../../../components/molecules/FacebookSignIn';
 
+//social login component
 const SocialLogin: React.FC = () => {
     return (
         <View style={styles.container}>

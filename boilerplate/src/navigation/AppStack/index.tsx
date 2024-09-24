@@ -31,7 +31,6 @@ const AppStack: React.FC = () => {
       screenOptions={screenOptions}>
         {/* as React.CoponentType define screen type with empty props if you want to pass the props you can define inide the empty object {} */}
       <Stack.Screen name={AppScreens.BOTTOM_TAB} component={BottomTabNavigation} />
-      {/* <Stack.Screen name={AppScreens.Verification} component={Verification as React.ComponentType<{}>} /> */}
     </Stack.Navigator>
   );
 };

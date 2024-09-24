@@ -17,7 +17,7 @@ export const ThemeProvider: React.FC<{ children: ReactNode }> = ({ children }) =
   const toggleTheme = async() => {
     _setDataToAsyncStorage(MODE , theme === 'light' ? 'dark' : 'light')
     setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
-  }; 
+  };
 
   const colorSchema = useColorScheme()
 

@@ -3,12 +3,14 @@ import { TouchableOpacity, Text, StyleSheet, TouchableOpacityProps } from 'react
 import { moderateScale } from 'react-native-size-matters';
 import { useTheme } from '../../../theme/ThemeProvider';
 
+//extended the default touchableOp[acity props types with custom props
 interface CButtonProps extends TouchableOpacityProps {
     title: string;
     onPress: () => void;
     disabled?: boolean;
 }
 
+//created custom button to use everwhere in the app
 const CButton: React.FC<CButtonProps> = ({ title, onPress, disabled = false , ...rest }) => {
 
     const Theme = useTheme()

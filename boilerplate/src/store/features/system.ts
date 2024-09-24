@@ -33,6 +33,7 @@ const initialState: CounterState = {
     device_timezone : null,
 };
 
+//creating slice to do function
 export const systemSlice = createSlice({
     name: 'system',
     initialState,
@@ -40,7 +41,7 @@ export const systemSlice = createSlice({
         setSystemData: (state, action: PayloadAction<CounterState>) => {
             // console.log("this is data" , action.payload)
             AxiosInstance.interceptors.request.use(async function (config) {
-                // Do something before request is sent
+                // setting the haders in axios so that device info will send to server in api headers
                 // console.log(
                 //   'this is header Data --- ', action.payload
                 // );

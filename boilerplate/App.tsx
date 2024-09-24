@@ -17,13 +17,30 @@ import { _setDataToAsyncStorage } from './src/utils/Localstorage';
 import { Provider } from 'react-redux';
 import { store } from './src/store/store';
 import { ThemeProvider } from './src/theme/ThemeProvider';
-import { FileLogger } from "react-native-file-logger";
+import { FileLogger } from 'react-native-file-logger';
 
 
 
 const App: React.FC = () => {
 
   useEffect(() => {
+
+    //file to store logs only works when enable flag is true
+    const enableFileLogger = true
+    if(enableFileLogger){
+      FileLogger.configure({
+        captureConsole : true,
+        dailyRolling : true,
+        maximumFileSize : 1024 * 1024,
+        maximumNumberOfFiles : 7,
+      });
+      FileLogger.debug('this is the test for file logging');
+      FileLogger.getLogFilePaths().then((path)=>{
+        console.log('the path is: ' + path);
+      })
+    }
+    
+
     requestUserPermission()
 
     MESSAGING.onTokenRefresh(async newToken => {
@@ -68,23 +85,6 @@ const App: React.FC = () => {
       }
     });
 
-    //file to store logs
-    const enableFileLogger = true
-    if(enableFileLogger){
-      FileLogger.configure({
-        captureConsole : true,
-        dailyRolling : true,
-        maximumFileSize : 1024 * 1024,
-        maximumNumberOfFiles : 7,
-      });
-      FileLogger.debug("this is the test for file logging");
-      FileLogger.getLogFilePaths().then((path)=>{
-        console.log("the path is: " + path);
-      })
-    }
-
-    // check force update
-    // checkUpdate();
     return () => {
       unsubscribe;
       subscription.remove();

@@ -14,6 +14,7 @@ const SkipButton : React.FC<SkipButtonProps> = (props) => <OnBoardingButton {...
 const NextButton : React.FC<NextButtonProps> = (props) => <OnBoardingButton {...props} title="Next" />;
 const DoneButton : React.FC<DoneButtonProps> = (props) => <OnBoardingButton {...props} title="Done" />;
 
+// Define the props for the HomeScreen component that is import from navigation/types.ts
 interface OnboardingScreenPropsType extends RootStackPropsType<'Welcome'>{}
 
 const OnboardingScreen : React.FC<OnboardingScreenPropsType> = ({navigation}) => {

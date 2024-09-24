@@ -1,12 +1,12 @@
 import React from 'react';
 import { Text, StyleSheet } from 'react-native';
-import { moderateVerticalScale } from 'react-native-size-matters';
 import { useTheme } from '../../../theme/ThemeProvider';
 
 interface CInputLabelProps {
     label: string;
 }
 
+//custom component to render input label
 const CInputLabel: React.FC<CInputLabelProps> = ({ label }) => {
 
     const Theme = useTheme()
@@ -14,7 +14,7 @@ const CInputLabel: React.FC<CInputLabelProps> = ({ label }) => {
     const styles = StyleSheet.create({
         label: {
             fontSize: Theme.fontSize.s,
-            marginBottom: moderateVerticalScale(8),
+            marginBottom: 8,
             color: Theme.colors.text,
         },
     });

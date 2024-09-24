@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, StyleSheet, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import CInputLabel from '../../atoms/CInputLabel';
-import { moderateScale } from 'react-native-size-matters';
 import PhoneInputAtom from '../../atoms/PhoneInputAtom';
 import { PhoneInputProps } from 'react-native-phone-number-input';
 
@@ -11,6 +10,7 @@ interface CPhoneInputProps extends PhoneInputProps {
     errorMessage : string
 }
 
+//custom phone number input with label
 const CPhoneInput: React.FC<CPhoneInputProps> = ({ value, onChangeText , errorMessage , ...rest }) => {
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -30,11 +30,6 @@ const CPhoneInput: React.FC<CPhoneInputProps> = ({ value, onChangeText , errorMe
 const styles = StyleSheet.create({
     container: {
         justifyContent : 'center',
-    },
-    label: {
-        fontSize: moderateScale(16),
-        marginBottom: moderateScale(8),
-        color: 'black',
     },
 });
 

@@ -2,6 +2,7 @@ import React from 'react';
 import { View } from 'react-native';
 import PhoneInput, { PhoneInputProps } from 'react-native-phone-number-input';
 import CInputError from '../CInputError';
+import { useTheme } from '../../../theme/ThemeProvider';
 
 interface PhoneInputAtomProps extends PhoneInputProps {
     value: string;
@@ -9,7 +10,9 @@ interface PhoneInputAtomProps extends PhoneInputProps {
     errorMessage?: string;
 }
 
+//phone number input in login screen
 const PhoneInputAtom: React.FC<PhoneInputAtomProps> = ({ value, onChangeText, errorMessage , ...rest}) => {
+    const Theme = useTheme()
     return (
         <View>
             <PhoneInput
@@ -20,7 +23,8 @@ const PhoneInputAtom: React.FC<PhoneInputAtomProps> = ({ value, onChangeText, er
                 onChangeText={(text) => {
                     onChangeText(text);
                 }}
-                textInputStyle={{padding : 0}}
+                codeTextStyle={{fontSize : Theme.fontSize.s}}
+                textInputStyle={{padding : 0 , fontSize : Theme.fontSize.s}}
                 withShadow
                 autoFocus
                 {...rest}

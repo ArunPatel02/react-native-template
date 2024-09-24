@@ -1,5 +1,6 @@
 import AxiosInstance from "../Api"
 
+//define function to do api all
 export const userSignIn = async (data : any)=>{
     try {
         const response = await AxiosInstance.post('/api/v1/signin', data);

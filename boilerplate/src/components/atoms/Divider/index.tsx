@@ -1,23 +1,13 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import { scale, verticalScale } from 'react-native-size-matters';
+import { verticalScale } from 'react-native-size-matters';
+import { useTheme } from '../../../theme/ThemeProvider';
 
+//custom divider
 const Divider = () => {
+  const Theme = useTheme()
 
-  return (
-    <View
-      style={styles.Divider}>
-      <View
-        style={styles.ORConatainer}>
-        <Text>OR</Text>
-      </View>
-    </View>
-  );
-};
-
-export default Divider;
-
-const styles = StyleSheet.create({
+  const styles = StyleSheet.create({
     Divider : {
         width: '100%',
         borderTopWidth: 1,
@@ -28,8 +18,25 @@ const styles = StyleSheet.create({
         height: verticalScale(20),
         position: 'absolute',
         marginTop: -verticalScale(8),
-        backgroundColor: '#fff',
+        backgroundColor: Theme.colors.background,
         alignSelf: 'center',
-        paddingHorizontal: scale(20),
+        paddingHorizontal: 20,
       },
+      text : {
+        fontSize : Theme.fontSize.s,
+        color : Theme.colors.text
+      }
 });
+  return (
+    <View
+      style={styles.Divider}>
+      <View
+        style={styles.ORConatainer}>
+        <Text style={styles.text}>OR</Text>
+      </View>
+    </View>
+  );
+};
+
+export default Divider;
+

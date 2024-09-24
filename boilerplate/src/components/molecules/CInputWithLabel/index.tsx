@@ -11,6 +11,7 @@ interface CInputWithLabelProps extends TextInputProps {
     label : string
 }
 
+//custom molecultes to combine two atoms to create inout with label moloecule component
 const CInputWithLabel: React.FC<CInputWithLabelProps> = ({ label , value, onChangeText, errorMessage , ...rest }) => {
     return (
             <View style={styles.container}>

@@ -9,7 +9,7 @@ import { Skeleton } from 'moti/skeleton'
 const Spacer = ({ height = 16 }) => <MotiView style={{ height }} />
 
 
-// Define the props for the HomeScreen component
+// Define the props for the HomeScreen component that is import from navigation/types.ts
 interface HomeScreenProps extends CompositeBottomTabNavigationScreenProps<'Home'> { }
 
 const data = [

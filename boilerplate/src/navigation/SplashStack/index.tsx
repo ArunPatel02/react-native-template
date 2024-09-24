@@ -28,6 +28,7 @@ const SplashStack: React.FC = () => {
     <Stack.Navigator
       initialRouteName={SplashScreens.SPLASH}
       screenOptions={screenOptions}>
+        {/* as React.CoponentType define screen type with empty props if you want to pass the props you can define inide the empty object {} */}
       <Stack.Screen name={SplashScreens.SPLASH} component={SplashScreen as React.ComponentType<{}>} />
     </Stack.Navigator>
   );

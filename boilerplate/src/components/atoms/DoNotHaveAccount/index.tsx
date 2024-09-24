@@ -1,12 +1,29 @@
 import React from 'react';
 import { Text, TouchableOpacity, StyleSheet, View } from 'react-native';
-import { moderateScale } from 'react-native-size-matters';
+import { useTheme } from '../../../theme/ThemeProvider';
 
 interface DoNotHaveAccountProps {
     onPress: () => void;
 }
 
 const DoNotHaveAccount: React.FC<DoNotHaveAccountProps> = ({ onPress }) => {
+    const Theme = useTheme()
+    const styles = StyleSheet.create({
+        container: {
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'center',
+        },
+        text: {
+            color: Theme.colors.text,
+            fontSize : Theme.fontSize.s
+        },
+        signupText: {
+            color: Theme.colors.primary,
+            fontSize : Theme.fontSize.s,
+            textDecorationLine: 'underline',
+        },
+    });
     return (
         <View style={styles.container}>
             <Text style={styles.text}>Don't have an account? </Text>
@@ -16,22 +33,6 @@ const DoNotHaveAccount: React.FC<DoNotHaveAccountProps> = ({ onPress }) => {
         </View>
     );
 };
-
-const styles = StyleSheet.create({
-    container: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    text: {
-        color: 'black',
-        fontSize : moderateScale(14)
-    },
-    signupText: {
-        color: 'blue',
-        textDecorationLine: 'underline',
-    },
-});
 
 export default DoNotHaveAccount;
 
