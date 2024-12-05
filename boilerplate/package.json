@@ -29,7 +29,7 @@
     "libphonenumber-js": "^1.11.8",
     "moti": "^0.29.0",
     "react": "18.3.1",
-    "react-native": "0.75.3",
+    "react-native": "0.76.3",
     "react-native-actions-sheet": "^0.9.7",
     "react-native-device-info": "^13.0.0",
     "react-native-fbsdk-next": "^13.0.0",
@@ -52,13 +52,16 @@
     "yup": "^1.4.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.20.0",
-    "@babel/preset-env": "^7.20.0",
-    "@babel/runtime": "^7.20.0",
-    "@react-native/babel-preset": "0.75.3",
-    "@react-native/eslint-config": "0.75.3",
-    "@react-native/metro-config": "0.75.3",
-    "@react-native/typescript-config": "0.75.3",
+    "@babel/core": "^7.25.2",
+    "@babel/preset-env": "^7.25.3",
+    "@babel/runtime": "^7.25.0",
+    "@react-native-community/cli": "15.0.1",
+    "@react-native-community/cli-platform-android": "15.0.1",
+    "@react-native-community/cli-platform-ios": "15.0.1",
+    "@react-native/babel-preset": "0.76.3",
+    "@react-native/eslint-config": "0.76.3",
+    "@react-native/metro-config": "0.76.3",
+    "@react-native/typescript-config": "0.76.3",
     "@types/react": "^18.2.6",
     "@types/react-native-onboarding-swiper": "^1.1.9",
     "@types/react-test-renderer": "^18.0.0",
@@ -73,6 +76,5 @@
   },
   "engines": {
     "node": ">=18"
-  },
-  "packageManager": "yarn@3.6.4"
+  }
 }
