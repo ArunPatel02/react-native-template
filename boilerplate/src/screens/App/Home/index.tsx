@@ -69,13 +69,13 @@ const RenderItem: React.FC<RenderItemProps> = ({ title, description }) => {
 
     return (
         <View style={styles.container}>
-             <Skeleton colorMode={theme} show={loading} height={30} radius={0} >
+             {/* <Skeleton colorMode={theme} show={loading} height={30} radius={0} > */}
                 <Text style={styles.title}>{loading?'':title}</Text>
-             </Skeleton>
-             {loading && <Spacer />}
-             <Skeleton colorMode={theme} show={loading} height={40} radius={0} >
+             {/* </Skeleton> */}
+             {/* {loading && <Spacer />} */}
+             {/* <Skeleton colorMode={theme} show={loading} height={40} radius={0} > */}
             <Text style={styles.description}>{loading?'':description}</Text>
-            </Skeleton>
+            {/* </Skeleton> */}
         </View>
     );
 };
